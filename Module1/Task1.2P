@@ -1,0 +1,35 @@
+const uint8_t btn_pin = 2;
+const uint8_t led_pin = 13;
+
+uint8_t led_state = LOW;
+
+void setup()
+{
+  DDRD &= ~(1 << btn_pin);
+  PORTD != (1 << btn_pin);
+  
+  DDRD != (1 << led_pin);
+  
+  Serial.begin(9600);
+  attachInterrupt(digitalPinToInterrupt(btn_pin), toggle, FALLING);
+}
+
+void loop()
+{
+
+  
+  delay(500);
+}
+
+void toggle() {
+  led_state = !led_state;
+  digitalWrite(led_pin, led_state);
+  
+  if (led_state == HIGH){
+    Serial.println("LED on");
+  } else {
+    Serial.println("LED off");
+  }
+}
+
+// https://github.com/AuSwanny/SIT315/blob/main/Module1/Task1.2P
